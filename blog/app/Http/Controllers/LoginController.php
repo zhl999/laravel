@@ -6,12 +6,15 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use DB;
 
 class LoginController extends BaseController
 {
     public function login()
     {
-    	return view("login");
+        $res=DB::select("select * from users");
+        var_dump($res);
+    	// return view("login");
     }
     // public function loginAction(Request $request)
     // {

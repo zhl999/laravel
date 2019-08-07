@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/aa', function () {
+    echo $hashed = Hash::make('aa');
 });
 Route::get('/login', function () {
     return view('login');
