@@ -19,3 +19,7 @@ Route::get('/login', function () {
 });
 Route::get('login','LoginController@login');
 Route::post('loginaction','LoginController@loginaction');
+
+Route::get('index/showcategory','IndexController@showcategory');
+	Route::get('index/getTree','IndexController@getTree');
+	Route::get('index/floor','IndexController@floor');
