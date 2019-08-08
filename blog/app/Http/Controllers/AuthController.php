@@ -23,16 +23,18 @@ class AuthController extends Controller
      */
     public function login()
     {
-        $credentials = request(['email', 'password']);
-
+        $credentials = request(['name', 'password']);
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json([
+            'access_token' => 'no',
+            'token_type' => 'error',
+            'expires_in' => '账号或密码错误'
+            ]);
         }
 
         return $this->respondWithToken($token);
     }
-
-    /**
+     /**
      * Get the authenticated User.
      *
      * @return \Illuminate\Http\JsonResponse

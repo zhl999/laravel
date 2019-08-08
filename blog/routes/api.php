@@ -35,6 +35,4 @@ Route::group([
 // 	Route::get('index/getTree','IndexController@getTree');
 // 	Route::get('index/floor','IndexController@floor');
 // });
-	Route::get('index/showcategory','IndexController@showcategory');
-	Route::get('index/getTree','IndexController@getTree');
-	Route::get('index/floor','IndexController@floor');
+	
