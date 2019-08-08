@@ -29,10 +29,9 @@ Route::group([
     Route::post('me', 'AuthController@me');
 
 });
+	// Route::get('index/showcategory','IndexController@showcategory');
+	// Route::get('index/getTree','IndexController@getTree');
+	// Route::get('index/floor','IndexController@floor');
+	Route::post('index/goodsshow','IndexController@goodsshow');
 
-// Route::group(function(){
-// 	Route::get('index/showcategory','IndexController@showcategory');
-// 	Route::get('index/getTree','IndexController@getTree');
-// 	Route::get('index/floor','IndexController@floor');
-// });
 	

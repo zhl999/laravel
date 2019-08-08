@@ -50,9 +50,14 @@ class IndexController extends BaseController
         // var_dump($arr);die;
         $data=[];
         foreach ($arr as $key => $value) {
-            $data[$value->floor_name][]=$value->goods_name;
+            $data[$value->floor_name][]=[$value->goods_name,$value->goods_id];
         }
          // var_dump($data);
 		return response()->json($data);
 	}
+  public function goodsshow(Request $request)
+  {
+    $goods_id=$request->input('goods_id');
+    return response()->json($goods_id);
+  }
 }
