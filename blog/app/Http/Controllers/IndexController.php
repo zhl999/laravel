@@ -58,6 +58,13 @@ class IndexController extends BaseController
   public function goodsshow(Request $request)
   {
     $goods_id=$request->input('goods_id');
-    return response()->json($goods_id);
+    $arr=DB::select("select * from goods join goods_attr on goods.goods_id=goods_attr.goods_id join attr_details on goods_attr.attr_details_id=attr_details.attr_details_id join attr on goods_attr.attr_id=attr.attr_id where goods.goods_id='$goods_id'");
+    $data=[];
+    foreach ($arr as $key => $value) {
+      $data[$value->attr_name][]=[$value->attr_detail_name,$value->attr_details_id];
+    }
+    $attr['name']=$value->goods_name;
+    $attr['data']=$data;
+    return response()->json($attr);
   }
 }

@@ -12,7 +12,7 @@ class LoginController extends BaseController
 {
     public function login()
     {
-        $res=DB::select("select * from users");
+        $res=DB::select("select * from goods join goods_attr on goods.goods_id=goods_attr.goods_id join attr_details on goods_attr.attr_details_id=attr_details.attr_details_id join attr on goods_attr.attr_id=attr.attr_id where goods.goods_id=4");
         var_dump($res);
     	// return view("login");
     }
