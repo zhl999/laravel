@@ -80,33 +80,24 @@ class IndexController extends BaseController
     // $arr=DB::select("select * from huopin")
     return response()->json($arr);
   }
-  public function buycar(Request $request)
-  {
-    $num=$request->input('num');
-    $username=$request->input('username');
-    $huoping_id=$request->input('huoping_id');
-    $user_id=DB::select("select id from users where name='$username'");
-      foreach ($user_id as $key => $value) {
-        $user_id=$value->id;
-      }
-    $harr=Db::select("select * from buycar where user_id='$user_id' and huoping_id='$huoping_id'");
-    if ($harr) {
-      $num=$num+$num;
-      DB::update("update buycar set number = '$num' where user_id = '$user_id' and huoping_id='$huoping_id'");
-      return response()->json($num);
-      // $arr=['number'=>$num];
-      // //Db::update("update buycar set `number` ")
-      // $re=DB::table('buycar') ->where('huoping_id','=',$huoping_id ) ->update($arr);
-    }else{
-      $user_id=DB::select("select id from users where name='$username'");
-      foreach ($user_id as $key => $value) {
-        $user_id=$value->id;
-      }
-      $re=DB::table('buycar')->insert(['user_id'=>$user_id,'huoping_id'=>$huoping_id,'number'=>$num]);
-      return response()->json($re);
-    }
-    //$res=DB::insert("insert into buycar (user_id, huoping_id, number) values ('$user_id', '$huoping_id','$num')");
-    
-    
-  }
+  // public function buycar(Request $request)
+  // {
+  //   $name=auth()->user();
+  //   $user_id=$name->id;
+  //   $num=$request->input('num');
+  //   $huoping_id=$request->input('huoping_id');
+  //   $harr=Db::select("select * from buycar where user_id='$user_id' and huoping_id='$huoping_id'");
+  //   if ($harr) {
+  //     foreach ($harr as $key => $value) {
+  //       $number=$value->number;
+  //     }
+  //     $n=$num+$number;
+  //     DB::update("update buycar set number = '$n' where user_id = '$user_id' and huoping_id='$huoping_id'");
+  //     return response()->json($num);
+  //   }else{
+  //     $re=DB::table('buycar')->insert(['user_id'=>$user_id,'huoping_id'=>$huoping_id,'number'=>$num]);
+  //     return response()->json($re);
+  //   }
+  //   //$res=DB::insert("insert into buycar (user_id, huoping_id, number) values ('$user_id', '$huoping_id','$num')");
+  // }
 }

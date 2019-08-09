@@ -27,7 +27,19 @@ Route::group([
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
-    Route::post('buycar', 'IndexController@buycar');
+    // Route::post('buycar', 'IndexController@buycar');
+
+});
+
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'car'
+
+], function ($router) {
+
+    Route::post('buycar', 'BuycarController@buycar');
+    Route::post('gobuy', 'BuycarController@gobuy');
 
 });
 	// Route::get('index/showcategory','IndexController@showcategory');
