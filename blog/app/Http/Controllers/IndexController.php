@@ -67,4 +67,11 @@ class IndexController extends BaseController
     $attr['data']=$data;
     return response()->json($attr);
   }
+  public function attrdetails(Request $request)
+  {
+    $attr_details_id=$request->input('attr_details_id');
+    $goods_id=$request->input('goods_id');
+    // $arr=DB::select("select * from huopin")
+    //return response()->json($attr_details_id);
+  }
 }

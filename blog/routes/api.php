@@ -33,5 +33,7 @@ Route::group([
 	// Route::get('index/getTree','IndexController@getTree');
 	// Route::get('index/floor','IndexController@floor');
 	Route::post('index/goodsshow','IndexController@goodsshow');
+	Route::post('index/attrdetails','IndexController@attrdetails');
+
 
 	
