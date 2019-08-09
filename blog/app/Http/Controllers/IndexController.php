@@ -20,6 +20,10 @@ class IndexController extends BaseController
   //   	$hashed = Hash::make('bb');
         
   //   }
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login','goods_attr','showcategory','floor','goodsshow','attrdetails']]);
+    }
     public function goods_attr()
     {
     	$results = DB::select("select * from category");
@@ -70,8 +74,39 @@ class IndexController extends BaseController
   public function attrdetails(Request $request)
   {
     $attr_details_id=$request->input('attr_details_id');
+    $attr_details_id=substr($attr_details_id,1);
     $goods_id=$request->input('goods_id');
+    $arr=DB::select("select * from huoping where goods_id='$goods_id' and goods_attr_id='$attr_details_id'");
     // $arr=DB::select("select * from huopin")
-    //return response()->json($attr_details_id);
+    return response()->json($arr);
+  }
+  public function buycar(Request $request)
+  {
+    $num=$request->input('num');
+    $username=$request->input('username');
+    $huoping_id=$request->input('huoping_id');
+    $user_id=DB::select("select id from users where name='$username'");
+      foreach ($user_id as $key => $value) {
+        $user_id=$value->id;
+      }
+    $harr=Db::select("select * from buycar where user_id='$user_id' and huoping_id='$huoping_id'");
+    if ($harr) {
+      $num=$num+$num;
+      DB::update("update buycar set number = '$num' where user_id = '$user_id' and huoping_id='$huoping_id'");
+      return response()->json($num);
+      // $arr=['number'=>$num];
+      // //Db::update("update buycar set `number` ")
+      // $re=DB::table('buycar') ->where('huoping_id','=',$huoping_id ) ->update($arr);
+    }else{
+      $user_id=DB::select("select id from users where name='$username'");
+      foreach ($user_id as $key => $value) {
+        $user_id=$value->id;
+      }
+      $re=DB::table('buycar')->insert(['user_id'=>$user_id,'huoping_id'=>$huoping_id,'number'=>$num]);
+      return response()->json($re);
+    }
+    //$res=DB::insert("insert into buycar (user_id, huoping_id, number) values ('$user_id', '$huoping_id','$num')");
+    
+    
   }
 }
