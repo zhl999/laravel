@@ -53,6 +53,22 @@ class BuycarController extends BaseController
     {
         $name=auth()->user();
         $user_id=$name->id;
-        //return response()->json($user_id);
+        return response()->json($user_id);
+    }
+    public function carshow ()
+    {
+        $name=auth()->user();
+        $user_id=$name->id;
+        $arr=DB::select("select goods.goods_name,huoping.huoping_id,buycar.attr_name,buycar.number,huoping.price from buycar join huoping on buycar.huoping_id=huoping.huoping_id join goods on huoping.goods_id=goods.goods_id where buycar.user_id='$user_id'");
+        return response()->json($arr);
+    }
+    public function greed (Request $request)
+    {
+        $num=$request->input('num');
+        $huoping_id=$request->input('huoping_id');
+        $name=auth()->user();
+        $user_id=$name->id;
+        $res=DB::update("update buycar set number = '$num' where user_id = '$user_id' and huoping_id='$huoping_id'");
+        return response()->json($res);
     }
 }

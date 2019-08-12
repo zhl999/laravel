@@ -40,6 +40,19 @@ Route::group([
 
     Route::post('buycar', 'BuycarController@buycar');
     Route::post('gobuy', 'BuycarController@gobuy');
+    Route::post('carshow', 'BuycarController@carshow');
+    Route::post('greed', 'BuycarController@greed');
+
+});
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'address'
+
+], function ($router) {
+
+    Route::post('address', 'AddressController@address');
+    Route::post('tjaddress', 'AddressController@tjaddress');
 
 });
 	// Route::get('index/showcategory','IndexController@showcategory');
