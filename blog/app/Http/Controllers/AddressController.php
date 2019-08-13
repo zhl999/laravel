@@ -57,4 +57,11 @@ class AddressController extends BaseController
         
 
     }
+    public function alladd()
+    {
+        $name=auth()->user();
+        $user_id=$name->id;
+        $arr=DB::select("select * from address where user_id='$user_id'");
+        return response()->json($arr);
+    }
 }

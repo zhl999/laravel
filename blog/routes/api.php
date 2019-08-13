@@ -47,12 +47,26 @@ Route::group([
 Route::group([
 
     'middleware' => 'api',
+    'prefix' => 'pay'
+
+], function ($router) {
+
+    Route::post('topay', 'PayController@topay');
+    Route::post('toaddress', 'PayController@toaddress');
+    Route::post('paying', 'PayController@paying');
+
+});
+
+Route::group([
+
+    'middleware' => 'api',
     'prefix' => 'address'
 
 ], function ($router) {
 
     Route::post('address', 'AddressController@address');
     Route::post('tjaddress', 'AddressController@tjaddress');
+    Route::post('alladd', 'AddressController@alladd');
 
 });
 	// Route::get('index/showcategory','IndexController@showcategory');
