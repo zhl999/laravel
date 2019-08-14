@@ -51,9 +51,9 @@ Route::group([
 
 ], function ($router) {
 
-    Route::post('topay', 'PayController@topay');
-    Route::post('toaddress', 'PayController@toaddress');
-    Route::post('paying', 'PayController@paying');
+    Route::post('topay', 'PayedController@topay');
+    Route::post('toaddress', 'PayedController@toaddress');
+    Route::post('paying', 'PayedController@paying');
 
 });
 
@@ -75,5 +75,17 @@ Route::group([
 	Route::post('index/goodsshow','IndexController@goodsshow');
 	Route::post('index/attrdetails','IndexController@attrdetails');
 
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'paya'
+
+], function ($router) {
+
+    Route::get('index', 'PayController@index');
+    Route::get('return', 'PayController@return');
+    Route::get('notify', 'PayController@notify');
+
+});
 
 	
