@@ -26,12 +26,11 @@ class AuthController extends Controller
         $credentials = request(['name', 'password']);
         if (! $token = auth()->attempt($credentials)) {
             return response()->json([
-            'access_token' => 'no',
-            'token_type' => 'error',
-            'expires_in' => '账号或密码错误'
+                'access_token' => 'on',
+                'token_type' => 'error',
+                'expires_in' => '账号密码错误'
             ]);
         }
-
         return $this->respondWithToken($token);
     }
      /**
